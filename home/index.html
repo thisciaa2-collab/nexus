@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus | ISRC & Server Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-light: #faf9f6;       /* El tono crema/off-white exacto de la foto */
+            --bg-dark: #1e1f22;        /* El fondo oscuro de la sección inferior */
+            --text-dark: #121212;      /* Texto de los títulos principales */
+            --text-muted: #65676b;    /* Subtítulos y enlaces secundarios */
+            --accent-nexus: #de562c;   /* El color naranja vivo e imponente de los botones */
+            --accent-hover: #cb461e;
+            --border-input: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* 1. NAVBAR SUPERIOR (IDÉNTICO AL LAYOUT) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: var(--bg-light);
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--accent-nexus);
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand i {
+            font-size: 26px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #222;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-nexus);
+        }
+
+        .nav-right-link {
+            text-decoration: none;
+            color: #222;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .lang-selector {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #222;
+        }
+
+        .help-icon {
+            color: #444;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            text-decoration: none;
+            color: var(--accent-nexus);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .btn-signup {
+            background-color: var(--accent-nexus);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-signup:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* 2. HERO SECCIÓN CON EL BUSCADOR CENTRAL */
+        .hero-section {
+            text-align: center;
+            padding: 80px 20px 100px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-section h1 {
+            font-size: 54px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: #1e1e24;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero-section p {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto 36px auto;
+            line-height: 1.6;
+        }
+
+        /* BARRA DE BÚSQUEDA INTEGRADA EN UNA FILA */
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            max-width: 580px;
+            margin: 0 auto;
+            gap: 12px;
+        }
+
+        .search-input-box {
+            position: relative;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid var(--border-input);
+            border-radius: 6px;
+            padding-left: 16px;
+        }
+
+        .search-input-box i {
+            color: #757575;
+            font-size: 16px;
+            position: absolute;
+        }
+
+        .search-input-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 14px 14px 14px 28px;
+            font-size: 15px;
+            color: var(--text-dark);
+            border-radius: 6px;
+        }
+
+        .btn-search {
+            background-color: var(--accent-nexus);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-search:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* 3. SECCIÓN INFERIOR OSCURA CON TARJETAS */
+        .dark-showcase {
+            background-color: var(--bg-dark);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .dark-showcase h2 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.2;
+        }
+
+        .dark-showcase p.sub-dark {
+            color: #9aa0a6;
+            font-size: 15px;
+            max-width: 680px;
+            margin: 0 auto 50px auto;
+            line-height: 1.5;
+        }
+
+        /* FILA DE TARJETAS INFERIORES */
+        .cards-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            background-color: #2b2d31;
+            border-radius: 8px;
+            padding: 24px;
+            width: 280px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(222, 86, 44, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-nexus);
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: #9aa0a6;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="#" class="brand">
+                <i class="fa-solid fa-circle-nodes"></i> Nexus
+            </a>
+            <nav class="nav-left" style="gap: 20px;">
+                <a href="#" class="nav-link">Cómo funciona</a>
+                <a href="#" class="nav-link">Promocionar</a>
+                <a href="#" class="nav-link">Explorar</a>
+            </nav>
+        </div>
+        
+        <div class="nav-right">
+            <a href="#" class="nav-right-link" style="font-size: 14px;">Postular como curador</a>
+            <div class="lang-selector">
+                <i class="fa-solid fa-globe"></i> ES (CL)
+            </div>
+            <i class="fa-solid fa-circle-question help-icon"></i>
+            <a href="#" class="btn-login">Entrar</a>
+            <a href="#" class="btn-signup">Registrarse</a>
+        </div>
+    </header>
+
+    <main class="hero-section">
+        <h1>Buscador de servidores para Nexus tracks</h1>
+        <p>Pega el enlace de tu comunidad o busca por categoría y tags para obtener las credenciales y tokens oficiales de acceso. Perfecto para auditorías de servidores, metadata y logs compartidos.</p>
+        
+        <div class="search-wrapper">
+            <div class="search-input-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-query" placeholder="Nombre del servidor o enlace de invitación...">
+            </div>
+            <button class="btn-search" onclick="triggerSearch()">Buscar</button>
+        </div>
+    </main>
+
+    <section class="dark-showcase">
+        <h2>Nexus te conecta con comunidades y desarrolladores que sí escuchan</h2>
+        <p class="sub-dark">Nuestra infraestructura ha ayudado a más de 600,000 usuarios a integrarse en nodos dinámicos, estructurar canales eficientes y expandir sus audiencias globales sin fricciones.</p>
+        
+        <div class="cards-grid">
+            <div class="feature-card">
+                <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Sincronización Veloz</h3>
+                <p>Indexación instantánea de credenciales y canales mediante procesamiento asíncrono.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Metadata Segura</h3>
+                <p>Extracción limpia de códigos estructurados sin comprometer tokens privados.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon"><i class="fa-solid fa-chart-simple"></i></div>
+                <h3>Métricas de Red</h3>
+                <p>Monitorea el crecimiento y el impacto de tus hilos de comunicación de inmediato.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function triggerSearch() {
+            const query = document.getElementById('search-query').value.trim();
+            if(query !== "") {
+                alert("Buscando en la red Nexus: " + query);
+            }
+        }
+    </script>
+
+</body>
+</html>

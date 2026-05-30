@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus | Planes y Precios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-light: #faf9f6;       /* Fondo crema exacto del index */
+            --bg-card: #ffffff;        /* Fondo de la tarjeta */
+            --text-dark: #121212;      /* Títulos principales */
+            --text-muted: #65676b;     /* Textos secundarios */
+            --accent-nexus: #de562c;   /* Naranja característico de la marca */
+            --accent-hover: #cb461e;
+            --border-soft: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* NAVBAR (Sincronizado con index.html) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: var(--bg-light);
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--accent-nexus);
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #222;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-nexus);
+        }
+
+        /* SECCIÓN DE PRECIOS */
+        .pricing-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .pricing-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .pricing-header p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 48px;
+            max-width: 500px;
+        }
+
+        /* DISEÑO BLOQUE / TARJETA DE PRECIO DE LA SOLICITUD */
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .price-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 380px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .plan-name {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-nexus);
+            margin-bottom: 16px;
+        }
+
+        .price-amount {
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .price-subtitle {
+            font-size: 15px;
+            font-weight: 600;
+            color: #10b981; /* Verde éxito para destacar que es gratis */
+            margin-top: 4px;
+            margin-bottom: 32px;
+        }
+
+        /* LISTA DE CARACTERÍSTICAS */
+        .features-list {
+            list-style: none;
+            margin-bottom: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .features-list i {
+            color: var(--accent-nexus);
+            font-size: 16px;
+            width: 20px;
+        }
+
+        /* BOTÓN DE REDIRECCIÓN */
+        .btn-action {
+            display: block;
+            text-align: center;
+            background-color: var(--text-dark);
+            color: white;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-action:hover {
+            background-color: var(--accent-nexus);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="brand">
+            <i class="fa-solid fa-circle-nodes"></i> Nexus
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="#" class="nav-link">Explorar</a>
+            <a href="precios.html" class="nav-link" style="color: var(--accent-nexus);">Precios</a>
+        </nav>
+    </header>
+
+    <main class="pricing-container">
+        <div class="pricing-header">
+            <h1>Elige tu plan</h1>
+            <p>Comunícate sin fricciones con la infraestructura más rápida del mercado.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="price-card">
+                <div class="plan-name">Plan Inicial</div>
+                <div class="price-amount">$0</div>
+                <div class="price-subtitle">¡No debes pagar!</div>
+                
+                <ul class="features-list">
+                    <li>
+                        <i class="fa-solid fa-users"></i> 
+                        <span>Cantidad máxima de amigos "15".</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-infinity"></i> 
+                        <span>Puedes usar llamadas infinitas</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-circle-check" style="color: #cccccc;"></i> 
+                        <span style="color: #888;">Soporte estándar</span>
+                    </li>
+                </ul>
+
+                <a href="register.html" class="btn-action">Comenzar ahora</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
